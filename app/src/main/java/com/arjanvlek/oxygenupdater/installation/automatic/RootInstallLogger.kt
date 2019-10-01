@@ -7,6 +7,7 @@ import com.arjanvlek.oxygenupdater.internal.OxygenUpdaterException
 import com.arjanvlek.oxygenupdater.internal.logger.Logger.logError
 import com.arjanvlek.oxygenupdater.internal.server.NetworkException
 import com.arjanvlek.oxygenupdater.settings.SettingsManager
+import java8.util.function.Consumer
 import org.joda.time.DateTimeZone
 import org.joda.time.LocalDateTime
 
@@ -41,7 +42,7 @@ class RootInstallLogger : JobService() {
 
         val installation = RootInstall(deviceId, updateMethodId, status, installationId, timestamp, startOSVersion, destinationOSVersion, currentOsVersion, failureReason)
 
-        connector.logRootInstall(installation) { result ->
+        connector.logRootInstall(installation, Consumer { result ->
             if (result == null) {
                 logError(TAG, NetworkException("Failed to log update installation action on server: No response from server"))
                 jobFinished(params, true)
@@ -54,7 +55,7 @@ class RootInstallLogger : JobService() {
             } else {
                 jobFinished(params, false)
             }
-        }
+        })
 
         return true
     }

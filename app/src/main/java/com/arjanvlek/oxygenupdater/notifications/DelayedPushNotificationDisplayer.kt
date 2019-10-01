@@ -41,7 +41,6 @@ import java.io.IOException
  */
 class DelayedPushNotificationDisplayer : JobService() {
 
-
     private val notificationBuilder: NotificationCompat.Builder
         get() = if (Build.VERSION.SDK_INT >= 26) {
             NotificationCompat.Builder(this, ApplicationData.PUSH_NOTIFICATION_CHANNEL_ID)
@@ -70,7 +69,7 @@ class DelayedPushNotificationDisplayer : JobService() {
             return exit(params, false)
         }
 
-        val notificationType = NotificationType.valueOf(messageContents[TYPE.toString()])
+        val notificationType = NotificationType.valueOf(messageContents[TYPE.toString()]!!)
         var builder: NotificationCompat.Builder? = null
 
         when (notificationType) {
@@ -78,13 +77,13 @@ class DelayedPushNotificationDisplayer : JobService() {
                 if (!settingsManager.getPreference(PROPERTY_RECEIVE_NEW_DEVICE_NOTIFICATIONS, true)) {
                     return exit(params, true)
                 }
-                builder = getBuilderForNewDeviceNotification(messageContents[NEW_DEVICE_NAME.toString()])
+                builder = getBuilderForNewDeviceNotification(messageContents[NEW_DEVICE_NAME.toString()]!!)
             }
             NotificationType.NEW_VERSION -> {
                 if (!settingsManager.getPreference(PROPERTY_RECEIVE_SYSTEM_UPDATE_NOTIFICATIONS, true)) {
                     return exit(params, true)
                 }
-                builder = getBuilderForNewVersionNotification(messageContents[DEVICE_NAME.toString()], messageContents[NEW_VERSION_NUMBER.toString()])
+                builder = getBuilderForNewVersionNotification(messageContents[DEVICE_NAME.toString()]!!, messageContents[NEW_VERSION_NUMBER.toString()]!!)
             }
             NotificationType.GENERAL_NOTIFICATION -> {
                 if (!settingsManager.getPreference(PROPERTY_RECEIVE_GENERAL_NOTIFICATIONS, true)) {
@@ -96,7 +95,7 @@ class DelayedPushNotificationDisplayer : JobService() {
                 else
                     messageContents[ENGLISH_MESSAGE.toString()]
 
-                builder = getBuilderForGeneralServerNotificationOrNewsNotification(message)
+                builder = getBuilderForGeneralServerNotificationOrNewsNotification(message!!)
             }
             NotificationType.NEWS -> {
                 if (!settingsManager.getPreference(PROPERTY_RECEIVE_NEWS_NOTIFICATIONS, true)) {
@@ -108,7 +107,7 @@ class DelayedPushNotificationDisplayer : JobService() {
                 else
                     messageContents[ENGLISH_MESSAGE.toString()]
 
-                builder = getBuilderForGeneralServerNotificationOrNewsNotification(newsMessage)
+                builder = getBuilderForGeneralServerNotificationOrNewsNotification(newsMessage!!)
             }
         }
         if (builder == null) {

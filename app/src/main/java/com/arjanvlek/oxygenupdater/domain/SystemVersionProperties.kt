@@ -100,7 +100,7 @@ class SystemVersionProperties {
 
     @Throws(IOException::class)
     private fun readBuildPropItem(itemKeys: String, buildProperties: String?, logText: String?): String {
-        if (buildProperties == null || buildProperties.isEmpty()) {
+        if (buildProperties.isNullOrEmpty()) {
             return NO_OXYGEN_OS
         }
 
@@ -113,12 +113,10 @@ class SystemVersionProperties {
                 .replace(" ", "")
                 .split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
+        val reader = BufferedReader(StringReader(buildProperties))
         for (item in items) {
-
-            val `in` = BufferedReader(StringReader(buildProperties))
-            var inputLine: String
-
-            while ((inputLine = `in`.readLine()) != null) {
+            var inputLine = reader.readLine()
+            while (inputLine != null) {
                 if (inputLine.contains(item)) {
                     // Remove brackets ([ and ]) and ":" from the getprop command output line
                     result = inputLine.replace("[$item]: ", "")
@@ -153,8 +151,11 @@ class SystemVersionProperties {
 
                     return result // Return the first successfully detected item. This because some keys have multiple values which all exist in the same properties file.
                 }
+
+                inputLine = reader.readLine()
             }
         }
+        reader.close()
         return result
     }
 

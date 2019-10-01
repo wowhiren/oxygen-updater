@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import com.arjanvlek.oxygenupdater.ApplicationData.Companion.NO_OXYGEN_OS
-import com.arjanvlek.oxygenupdater.ApplicationData.NO_OXYGEN_OS
 import com.arjanvlek.oxygenupdater.R
 import com.arjanvlek.oxygenupdater.domain.Device
 import com.arjanvlek.oxygenupdater.internal.OxygenUpdaterException
@@ -17,6 +16,7 @@ import com.arjanvlek.oxygenupdater.internal.Utils
 import com.arjanvlek.oxygenupdater.internal.logger.Logger.logError
 import com.arjanvlek.oxygenupdater.internal.logger.Logger.logWarning
 import com.arjanvlek.oxygenupdater.views.AbstractFragment
+import java8.util.function.Consumer
 import java8.util.stream.StreamSupport
 
 class DeviceInformationFragment : AbstractFragment() {
@@ -38,7 +38,7 @@ class DeviceInformationFragment : AbstractFragment() {
         }
 
         displayDeviceInformation()
-        getApplicationData().getServerConnector().getDevices { this.displayFormattedDeviceName(it) }
+        getApplicationData().getServerConnector().getDevices(Consumer { devices -> displayFormattedDeviceName(devices) })
     }
 
     private fun displayFormattedDeviceName(devices: List<Device>?) {
@@ -109,7 +109,7 @@ class DeviceInformationFragment : AbstractFragment() {
         // Oxygen OS version (if available)
         val oxygenOsVersionView = rootView!!.findViewById<TextView>(R.id.device_information_oxygen_os_ver_field)
 
-        if (systemVersionProperties?.oxygenOSVersion != NO_OXYGEN_OS) {
+        if (systemVersionProperties.oxygenOSVersion != NO_OXYGEN_OS) {
             oxygenOsVersionView.text = systemVersionProperties.oxygenOSVersion
 
         } else {
@@ -121,8 +121,8 @@ class DeviceInformationFragment : AbstractFragment() {
         // Oxygen OS OTA version (if available)
         val oxygenOsOtaVersionView = rootView!!.findViewById<TextView>(R.id.device_information_oxygen_os_ota_ver_field)
 
-        if (systemVersionProperties?.oxygenOSOTAVersion != NO_OXYGEN_OS) {
-            oxygenOsOtaVersionView.text = systemVersionProperties?.oxygenOSOTAVersion
+        if (systemVersionProperties.oxygenOSOTAVersion != NO_OXYGEN_OS) {
+            oxygenOsOtaVersionView.text = systemVersionProperties.oxygenOSOTAVersion
         } else {
             oxygenOsOtaVersionView.visibility = View.GONE
         }
@@ -161,7 +161,7 @@ class DeviceInformationFragment : AbstractFragment() {
     }
 
     companion object {
-        private val TAG = "DeviceInformationFragment"
+        private const val TAG = "DeviceInformationFragment"
     }
 
 }

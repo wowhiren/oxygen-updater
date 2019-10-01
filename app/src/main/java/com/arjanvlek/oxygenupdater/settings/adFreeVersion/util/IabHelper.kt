@@ -107,9 +107,9 @@ class IabHelper
     // The request code used to launch purchase flow
     private var mRequestCode: Int = 0
     // The item type of the current purchase flow
-    private var mPurchasingItemType: String
+    private lateinit var mPurchasingItemType: String
     // Public key for verifying signature, in base64 encoding
-    private var mSignatureBase64: String? = null
+    private var mSignatureBase64: String
     // The listener registered on launchPurchaseFlow, which we have to call back when
     // the purchase finishes
     private var mPurchaseListener: OnIabPurchaseFinishedListener? = null
@@ -222,7 +222,7 @@ class IabHelper
         serviceIntent.setPackage("com.android.vending")
         val intentServices = mContext!!.packageManager
                 .queryIntentServices(serviceIntent, 0)
-        if (intentServices != null && intentServices.isNotEmpty()) {
+        if (!intentServices.isNullOrEmpty()) {
             // service available to handle that Intent
             mContext!!.bindService(serviceIntent, mServiceConn!!, Context.BIND_AUTO_CREATE)
         } else {
@@ -283,9 +283,7 @@ class IabHelper
     }
 
     private fun checkNotDisposed() {
-        if (mDisposed) {
-            throw IllegalStateException("IabHelper was disposed of, so it cannot be used.")
-        }
+        check(!mDisposed) { "IabHelper was disposed of, so it cannot be used." }
     }
 
     /**
@@ -349,7 +347,7 @@ class IabHelper
         try {
             logDebug("Constructing buy intent for $sku, item type: $itemType")
             val buyIntentBundle: Bundle
-            if (oldSkus == null || oldSkus.isEmpty()) {
+            if (oldSkus.isNullOrEmpty()) {
                 // Purchasing a new item or subscription re-signup
                 buyIntentBundle = mService!!.getBuyIntent(3, mContext!!.packageName, sku, itemType,
                         extraData)

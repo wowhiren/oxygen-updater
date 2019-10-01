@@ -48,7 +48,7 @@ class SubmittedUpdateFileRepository(context: Context) : SQLiteOpenHelper(context
     }
 
     fun isFileAlreadySubmitted(filename: String?): Boolean {
-        return if (filename == null || filename.isEmpty()) {
+        return if (filename.isNullOrEmpty()) {
             false
         } else DatabaseUtils.queryNumEntries(
                 readableDatabase,
@@ -60,7 +60,7 @@ class SubmittedUpdateFileRepository(context: Context) : SQLiteOpenHelper(context
     }
 
     fun store(filename: String?) {
-        if (filename != null && filename.isNotEmpty()) {
+        if (!filename.isNullOrEmpty()) {
             val values = ContentValues()
             values.put(COLUMN_NAME, filename)
             values.put(COLUMN_DATE_SUBMITTED, LocalDateTime.now(DateTimeZone.forID("Europe/Amsterdam")).toString(ISODateTimeFormat.basicDateTime()))
