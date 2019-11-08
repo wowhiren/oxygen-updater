@@ -5,35 +5,35 @@
 	<string name="launcher_app_name">Oxygen Updater</string>
 
 	<!-- Update information strings-->
-	<string name="update">Update</string>
-	<string name="update_information_close">Close</string>
-	<string name="update_information_description_not_available">There is no official information about the new features this update provides. Usually, such an update provides bug fixes, performance enhancements, and / or critical security updates for your device.</string>
-	<string name="update_information_file_name">File name: %1$s</string>
+	<string name="update">अपडेट करें</string>
+	<string name="update_information_close">बंद करे</string>
+	<string name="update_information_description_not_available">नई अपडेट के बारे में कोई आधिकारिक जानकारी नहीं है। आमतौर पर, इस तरह के अपडेट से आपके डिवाइस के लिए बग फिक्स, परफॉर्मेंस एन्हांसमेंट और / या महत्वपूर्ण सुरक्षा अपडेट मिलते हैं।</string>
+	<string name="update_information_file_name">फ़ाइल का नाम: %1$s</string>
 	<string name="update_information_for">for</string>
 	<string name="update_information_header">Update</string>
 	<string name="update_information_header_short">Update</string>
-	<string name="update_information_installed_update">The latest system update is:</string>
-	<string name="update_information_last_checked_on">Last checked on: %1$s</string>
-	<string name="update_information_latest_available_update">New system update available</string>
-	<string name="update_information_no_update_data_available">No update information is available</string>
+	<string name="update_information_installed_update">नवीनतम सिस्टम अपडेट है:</string>
+	<string name="update_information_last_checked_on">अंतिम बार जांच की गई: %1$s</string>
+	<string name="update_information_latest_available_update">नई सिस्टम अपडेट है उपलब्ध है</string>
+	<string name="update_information_no_update_data_available">कोई सिस्टम अपडेट जानकारी उपलब्ध नहीं है</string>
 	<string name="update_information_oxygen_os_version">Oxygen OS Version: %1$s</string>
-	<string name="update_information_system_is_up_to_date">Your system is up to date</string>
-	<string name="update_information_unknown_update_name">Unnamed update for %1$s</string>
+	<string name="update_information_system_is_up_to_date">आपका सिस्टम अपडेट है</string>
+	<string name="update_information_unknown_update_name">के लिए अपडेट करें %1$s</string>
 	<string name="update_information_version">&#160;version:</string>
-	<string name="update_information_view_update_information">View update information</string>
+	<string name="update_information_view_update_information">अपडेट जानकारी देखें</string>
 
 	<!-- Server status warning strings -->
-	<string name="server_status_error">Some features do not work.</string>
-	<string name="server_status_unreachable">The server can\'t be reached. Try refreshing the page.</string>
-	<string name="server_status_warning">Some features may not work properly.</string>
+	<string name="server_status_error">कुछ सुविधाएँ काम नहीं करती हैं.</string>
+	<string name="server_status_unreachable">सर्वर तक नहीं पहुँचा जा सकता है। पृष्ठ को ताज़ा करने का प्रयास करें.</string>
+	<string name="server_status_warning">कुछ सुविधाएं शायद समुचित रूप से कार्य न करें।</string>
 
 	<!-- New app version message strings -->
-	<string name="new_app_version">App update available! Version &lt;a href="https://play.google.com/store/apps/details?id=com.arjanvlek.oxygenupdater">%1$s&lt;/a> has been released!</string>
+	<string name="new_app_version">ऐप अपडेट उपलब्ध है! Version &lt;a href="https://play.google.com/store/apps/details?id=com.arjanvlek.oxygenupdater">%1$s&lt;/a> जारी कर दिया गया है!</string>
 
 	<!-- Date and time strings -->
 	<string name="time_at">at</string>
-	<string name="time_today">Today</string>
-	<string name="time_yesterday">Yesterday</string>
+	<string name="time_today">आज</string>
+	<string name="time_yesterday">बिता कल</string>
 
 	<!-- Downloader strings-->
 	<string name="download">Download</string>
@@ -41,15 +41,15 @@
 	<string name="downloading">Downloading…</string>
 	<string name="paused">Paused</string>
 
-	<string name="download_already_downloaded">The update was already downloaded. It is ready to get installed.</string>
+	<string name="download_already_downloaded">अपडेट पहले से ही डाउनलोड किया गया था। यह स्थापित होने के लिए तैयार है।</string>
 	<string name="download_complete">Download complete</string>
-	<string name="download_complete_notification">Download complete. Tap to start the installation.</string>
+	<string name="download_complete_notification">Download complete. स्थापना शुरू करने के लिए.</string>
 
 	<string name="download_description">Oxygen Updater</string>
 
 	<string name="download_error">Download Error</string>
 	<string name="download_error_close">CLOSE</string>
-	<string name="download_error_corrupt">The downloaded update file is damaged! Please try downloading it again.</string>
+	<string name="download_error_corrupt">डाउनलोड की गई अपडेट फ़ाइल क्षतिग्रस्त है! कृपया इसे फिर से डाउनलोड करने का प्रयास करें।</string>
 	<!-- TODO translate the 3 below to Russian -->
 	<string name="download_error_network">A network error occurred while downloading the update. The download will resume automatically.</string>
 	<string name="download_error_server">A server error occurred while downloading the update. Please try downloading the update again.</string>
